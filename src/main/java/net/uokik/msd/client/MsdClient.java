@@ -54,15 +54,13 @@ public class MsdClient implements ClientModInitializer {
                 MultiplayerServerListWidget serverListWidget = multiplayerScreen.serverListWidget;
 
                 for (int i = 0; i < serverListWidget.children().size(); i++) {
-                    if (!(serverListWidget.children().get(i) instanceof MultiplayerServerListWidget.ServerEntry)) {
+                    var entry = serverListWidget.children().get(i);
+                    if (!(entry instanceof MultiplayerServerListWidget.ServerEntry)) {
                         continue;
                     }
 
-                    int rowTop = serverListWidget.getRowTop(i);
-                    int rowWidth = serverListWidget.getRowWidth();
-
-                    int cbX = rowTop - CB_SIZE - 4;
-                    int cbY = rowWidth / 2 + serverListWidget.itemHeight / 2 - 5;
+                    int cbX = entry.getContentX() - CB_SIZE - 4;
+                    int cbY = entry.getContentY() + entry.getContentHeight() / 2 - 5;
 
                     if (mouseX >= cbX && mouseX <= cbX + CB_SIZE
                             && mouseY >= cbY && mouseY <= cbY + CB_SIZE) {

@@ -3,6 +3,7 @@ package net.uokik.msd.client.mixin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerServerListWidget;
+import net.minecraft.client.gui.widget.EntryListWidget;
 import net.uokik.msd.client.MsdClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -10,12 +11,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MultiplayerServerListWidget.ServerEntry.class)
-public abstract class MsdListWidgetMixin {
+public abstract class MsdListWidgetMixin extends EntryListWidget.Entry<MultiplayerServerListWidget.Entry> {
 
     @Inject(method = "render", at = @At("TAIL"))
-    private void renderCheckbox(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta, CallbackInfo ci) {
-        int cbX = y - MsdClient.CB_SIZE - 4;
-        int cbY = x + entryWidth / 2 - 5;
+    private void renderCheckbox(DrawContext context, int mouseX, int mouseY, boolean hovered, float deltaTicks, CallbackInfo ci) {
+        int index = this.parentList.children().indexOf(this);
+        int cbX = this.getContentX() - MsdClient.CB_SIZE - 4;
+        int cbY = this.getContentY() + this.getContentHeight() / 2 - 5;
 
         boolean selected = MsdClient.isSelected(index);
         int borderColor = selected ? 0xFF4488CC : 0xFF888888;
