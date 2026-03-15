@@ -9,3 +9,7 @@ out/
 
 # Fabric
 run/
+
+# Misc
+*.hprof
+*.class
