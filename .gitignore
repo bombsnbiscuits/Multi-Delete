@@ -1,0 +1,11 @@
+# Gradle
+build/
+.gradle/
+
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Fabric
+run/

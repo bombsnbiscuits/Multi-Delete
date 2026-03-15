@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "msd",
+  "version": "${version}",
+  "name": "Multi Server Delete",
+  "description": "Select multiple servers with checkboxes and delete them all at once",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/msd/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.uokik.msd.client.MsdClient"
+    ],
+    "main": [
+      "net.uokik.msd.Msd"
+    ]
+  },
+  "mixins": [
+    "msd.mixins.json"
+  ],
+  "accessWidener": "msd.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "fabric-api": "*",
+    "minecraft": "1.21.10"
+  }
+}
